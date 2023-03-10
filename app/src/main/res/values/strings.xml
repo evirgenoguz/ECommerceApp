@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ECommerceApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="right_adress">The Right Adress\nFor Shopping\nAnyday</string>
+    <string name="quality">It is now very easy to reach the\nbest quality among at the\nproducts on the internet!</string>
+    <string name="start">Start</string>
+    <string name="kleine">Kleine</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="dont_have_an_account">Don\'t have an account? Register</string>
+    <string name="let_s_login">Let\'s Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="password">Password</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="let_s_register">Let\'s Register</string>
+    <string name="do_have_an_account">Do you have an account? login</string>
 </resources>

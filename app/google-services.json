@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "840565990481",
+    "project_id": "ecommerceapp-3fbf7",
+    "storage_bucket": "ecommerceapp-3fbf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840565990481:android:66338ca13cefab5d250470",
+        "android_client_info": {
+          "package_name": "com.evirgenoguz.ecommerceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840565990481-66ld8b8fmiqgh5gbo53hjhvrlg6fht63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.evirgenoguz.ecommerceapp",
+            "certificate_hash": "4a124c9f35b337aacdb824e9fafa353887108bab"
+          }
+        },
+        {
+          "client_id": "840565990481-9667q26ofuc4qcurr4o2092f5dq4gnhp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwTuonMgMpsGeHAsMcwvNK6Eu4kRcbUao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840565990481-9667q26ofuc4qcurr4o2092f5dq4gnhp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
