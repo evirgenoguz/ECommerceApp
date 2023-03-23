@@ -5,10 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.evirgenoguz.ecommerceapp.R
 import com.evirgenoguz.ecommerceapp.databinding.FragmentAccountOptionsBinding
 import com.evirgenoguz.ecommerceapp.databinding.FragmentIntroductionBinding
-
+import dagger.hilt.android.AndroidEntryPoint
 
 class IntroductionFragment : Fragment() {
 
@@ -23,6 +24,14 @@ class IntroductionFragment : Fragment() {
         _binding = FragmentIntroductionBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnStart.setOnClickListener {
+            findNavController().navigate(R.id.action_introductionFragment_to_accountOptionsFragment)
+        }
     }
 
     override fun onDestroyView() {

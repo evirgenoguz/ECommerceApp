@@ -8,15 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.evirgenoguz.ecommerceapp.R
 import com.evirgenoguz.ecommerceapp.data.User
 import com.evirgenoguz.ecommerceapp.databinding.FragmentAccountOptionsBinding
 import com.evirgenoguz.ecommerceapp.databinding.FragmentRegisterBinding
+import com.evirgenoguz.ecommerceapp.util.RegisterValidation
 import com.evirgenoguz.ecommerceapp.util.Resource
 import com.evirgenoguz.ecommerceapp.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private val TAG = "RegisterFragment"
 
@@ -40,6 +44,11 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tvDoHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
 
         binding.apply {
             btnRegister.setOnClickListener {
@@ -66,6 +75,28 @@ class RegisterFragment : Fragment() {
                     is Resource.Error -> {
                         Log.e(TAG, it.message.toString())
                         binding.btnRegister.revertAnimation()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.etEmail.apply {
+                            requestFocus()
+                            error = validation.email.message
+                        }
+                    }
+                }
+                if (validation.password is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.etPassword.apply {
+                            requestFocus()
+                            error = validation.password.message
+                        }
                     }
                 }
             }
