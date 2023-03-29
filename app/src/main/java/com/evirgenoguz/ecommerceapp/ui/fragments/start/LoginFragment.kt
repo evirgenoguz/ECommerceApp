@@ -14,8 +14,10 @@ import com.evirgenoguz.ecommerceapp.R
 import com.evirgenoguz.ecommerceapp.databinding.FragmentAccountOptionsBinding
 import com.evirgenoguz.ecommerceapp.databinding.FragmentLoginBinding
 import com.evirgenoguz.ecommerceapp.ui.ShoppingActivity
+import com.evirgenoguz.ecommerceapp.ui.dialog.setupBottomSheetDialog
 import com.evirgenoguz.ecommerceapp.util.Resource
 import com.evirgenoguz.ecommerceapp.viewmodel.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -50,7 +52,30 @@ class LoginFragment : Fragment() {
                 val password = etPassword.text.toString()
                 viewModel.login(email, password)
             }
+
+            tvForgotPassword.setOnClickListener {
+                setupBottomSheetDialog {email ->
+                    viewModel.resetPassword(email)
+                }
+            }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.resetPassword.collect{
+                when(it){
+                    is Resource.Loading -> {
+                    }
+                    is Resource.Success -> {
+                        Snackbar.make(requireView(), "Reset link wast sent to your email", Snackbar.LENGTH_LONG).show()
+                    }
+                    is Resource.Error -> {
+                        Snackbar.make(requireView(), "Error: ${it.message}", Snackbar.LENGTH_LONG).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
 
         lifecycleScope.launchWhenStarted {
             viewModel.login.collect {
